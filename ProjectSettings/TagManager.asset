@@ -5,11 +5,16 @@ TagManager:
   serializedVersion: 3
   tags:
   - stairsUp
-  - plataformZ
-  - platformTSection
-  - platformZSplit
-  - platformZThin
   - stairsDown
+  - platformZ
+  - platformTSection
+  - platformZThin
+  - platformZSplit
+  - Undefined
+  - Fogo
+  - platformZFogo
+  - platformZThinFogo
+  - Muro
   layers:
   - Default
   - TransparentFX

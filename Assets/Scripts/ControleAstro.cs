@@ -14,10 +14,13 @@ public class ControleAstro : MonoBehaviour
     }
 
     Animator anim;
+    public static GameObject player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         anim = this.GetComponent<Animator>();
+        player = this.gameObject;
     }
 
     // Update is called once per frame
@@ -26,19 +29,24 @@ public class ControleAstro : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetBool("isJumping", true);
-        } else if (Input.GetKeyDown(KeyCode.M))
+        }
+        else if (Input.GetKeyDown(KeyCode.M))
         {
             anim.SetBool("isMagic", true);
-        } else if (Input.GetKeyDown(KeyCode.RightArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             this.transform.Rotate(Vector3.up * 90);
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             this.transform.Rotate(Vector3.up * -90);
-        } else if (Input.GetKeyDown(KeyCode.A))
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             this.transform.Translate(-0.2f, 0, 0);
-        } else if (Input.GetKeyDown(KeyCode.D))
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             this.transform.Translate(0.2f, 0, 0);
         }

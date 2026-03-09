@@ -10,31 +10,63 @@ public class GeraMundo : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Vector3 pos = new Vector3(0, 0, 0);
-        for (int i = 0; i < 10; i++)
+        GameObject falsoPlayer = new GameObject("falso");
+        for (int i = 0; i < 30; i++)
         {
             int numeroDePlataforma = Random.Range(0, plataformas.Length);
-            
-            GameObject p = Instantiate(plataformas[numeroDePlataforma], pos, Quaternion.identity);
+            if (plataformas[numeroDePlataforma].tag == "platformZ" || 
+                        plataformas[numeroDePlataforma].tag == "platformZThin" || 
+                        plataformas[numeroDePlataforma].tag == "platformZSplit")
+            {
+                int repete = Random.Range(0, 4);
 
-            if(plataformas[numeroDePlataforma].tag == "stairsUp")
-            {
-                pos.y += 5;
+                for (int j = 0; j < repete; j++)
+                {
+                    GameObject p2 = Instantiate(plataformas[numeroDePlataforma], 
+                            falsoPlayer.transform.position, 
+                            falsoPlayer.transform.rotation);
+                    falsoPlayer.transform.Translate(Vector3.forward * -10);
+                }
             }
-            else if(plataformas[numeroDePlataforma].tag == "stairsDown")
+
+            // if (i == 0 && (plataformas[numeroDePlataforma].tag == "stairsDown" || plataformas[numeroDePlataforma].tag == "stairsUp"))
+            // {
+            //     falsoPlayer.transform.Translate(Vector3.forward * -10);
+            // }
+
+            GameObject p = Instantiate(plataformas[numeroDePlataforma], falsoPlayer.transform.position, falsoPlayer.transform.rotation);
+
+            if (plataformas[numeroDePlataforma].tag == "stairsUp")
             {
-                pos.y -= 5;
+                falsoPlayer.transform.Translate(0, 5, 0);
+            }
+            else if (plataformas[numeroDePlataforma].tag == "stairsDown")
+            {
+
+                falsoPlayer.transform.Translate(0, -5, 0);
                 p.transform.Rotate(new Vector3(0, 180, 0));
-                p.transform.position = pos;
+                p.transform.position = falsoPlayer.transform.position;
             }
-  
-            pos.z -= 10;
+            else if (plataformas[numeroDePlataforma].tag == "platformTSection")
+            {
+                if (Random.Range(0, 2) == 0)
+                {
+                    falsoPlayer.transform.Rotate(new Vector3(0, 90, 0));
+                }
+                else
+                {
+                    falsoPlayer.transform.Rotate(new Vector3(0, -90, 0));
+                }
+                falsoPlayer.transform.Translate(Vector3.forward * -10);
+            }
+
+            falsoPlayer.transform.Translate(Vector3.forward * -10);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
